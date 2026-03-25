@@ -1,5 +1,6 @@
 import { siteConfig } from "@/config/site";
 import Link from "next/link";
+import Image from "next/image";
 import { Home, Search, ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 
@@ -15,9 +16,19 @@ export default function HomePage() {
       {/* Header */}
       <header className="border-b border-stone-200 bg-white">
         <div className="container mx-auto flex items-center justify-between px-4 py-4">
-          <span className="font-heading text-lg font-bold text-stone-900">
-            {siteConfig.company.name}
-          </span>
+          {siteConfig.company.logo ? (
+            <Image
+              src={siteConfig.company.logo}
+              alt={siteConfig.company.name}
+              width={140}
+              height={40}
+              className="h-8 w-auto md:h-10"
+            />
+          ) : (
+            <span className="font-heading text-lg font-bold text-stone-900">
+              {siteConfig.company.name}
+            </span>
+          )}
           <a
             href={`tel:${siteConfig.company.phone.replace(/\s/g, "")}`}
             className="text-sm font-medium text-stone-600 transition-colors hover:text-primary"
